@@ -1,0 +1,11 @@
+.error {
+  color:red;
+}
+table th a {
+	color: #777777;
+	text-decoration: none;
+	border-bottom: 1px dashed;
+}
+div {
+	margin: 5px;
+}

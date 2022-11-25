@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Список студентов</title>
+	<meta charset="utf-8" >
+	<link rel='stylesheet' href='styles.css' type='text/css'>
+</head>
+<body>
+<div style="text-align: center">
+<p><a href="registration.php">Страница регистрации</a></p>
+</div>
+<p> <?php if ($search): ?>
+	  Показаны только абитуриенты, найденные по запросу "<?= html($search) ?>". 
+	<?php endif; ?>
+</p>
+<div style="text-align: right">
+<form action="<?= $_SERVER['PHP_SELF'];?>">
+<label>Поиск:</label><input type="text" name="search" >
+<input type="submit" value="Найти" >
+</form>
+</div>
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+<tr>
+	<th><?= make_sort_link('Имя', 'name_asc', 'name_desc') ?></th>
+	<th><?= make_sort_link('Фамилия', 'sname_asc', 'sname_desc') ?></th>
+	<th><?= make_sort_link('Группа', 'group_asc', 'group_desc') ?></th>
+	<th><?= make_sort_link('Баллы', 'points_asc', 'points_desc') ?></th>
+</tr>
+<?php foreach($result as $item): ?> 
+<tr> 
+<td><?= $item['name']?></td>
+<td><?= $item['surname']?></td>
+<td><?= $item['group']?></td>
+<td><?= $item['points']?></td>
+</tr> 
+<?php endforeach; ?>
+</table>
+<div style="text-align: center">
+<?php if ($pages > 1):
+      	for ($p = 1; $p <= $pages; $p++): 
+	    	echo "<a href='?page=$p'>  $p  </a>";
+	  	endfor;
+	endif; 
+?>
+</div>

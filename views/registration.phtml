@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><?= $page_title ?></title>
+	<meta charset="utf-8">
+    <link rel='stylesheet' href='styles.css' type='text/css'>
+</head>
+<body>
+<div style="text-align: center">
+<p><a href="index.php">Список студентов</a></p>
+</div>
+<h2>Введите личные данные (все поля обязательны)</h2>
+<form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
+<div>
+Электронная почта:   <input type="email" name="email" value="<?= html($student['email'])?>" >
+<span class="error"><?= $error['email'] ?? "";?></span>
+</div>
+<div>
+Имя:   <input type="text" name="name" value="<?= html($student['name'])?>" >
+<span class="error"><?= $error['name'] ?? "";?></span>
+</div>
+<div>
+Фамилия:  <input type="text" name="surname" value="<?= html($student['surname'])?>" >
+<span class="error"><?= $error['surname'] ?? "";?></span>
+</div>
+<div>
+Пол:  
+	<input type="radio" name="sex" id='m' value="м" 
+		<?php if ($student['sex'] == 'м'): ?>
+		<?= 'checked'?> >
+		<?php endif; ?>
+	<label for="m">Мужской</label>
+	<input type="radio" name="sex" id='f' value="ж"
+		<?php if ($student['sex'] == 'ж'): ?>
+		<?=  'checked'?> >
+		<?php endif; ?>
+	<label for="f">Женский</label>
+</div>
+<div>
+Местонахождение:  
+	<input type="radio" name="place" id='mest' value="местный" 
+		<?php if ($student['place'] == 'местный'): ?>
+		<?= 'checked'?> >
+		<?php endif; ?>
+	<label for="mest">Местный</label>
+	<input type="radio" name="place" id='nemest' value="неместный" 
+		<?php if ($student['place'] == 'неместный'): ?>
+		<?= 'checked'?> >
+		<?php endif; ?>
+	<label for="nemest">Неместный</label>
+</div>
+<div>
+Группа:  <input type="text" name="group" value="<?= html($student['group'])?>" >
+<span class="error"><?= $error['group'] ?? "";?></span>
+</div>
+<div>
+Год рождения:  <input type="number" name="byear" value="<?= html($student['byear'])?>" >
+<span class="error"><?= $error['byear'] ?? "";?></span>
+</div>
+<div>
+Сумма баллов:  <input type="number" name="points" max='300' value="<?= html($student['points'])?>" >
+<span class="error"><?= $error['points'] ?? "";?></span>
+</div>
+<input type="submit" value=<?= $buttonText;?> >
+<?= $regString;?>
+</form>
+</body>
